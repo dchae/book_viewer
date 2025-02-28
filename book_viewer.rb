@@ -28,7 +28,7 @@ end
 get '/' do
   @page_title = 'Home'
 
-  erb :home #, locals: { page_title: "Page Title" }
+  erb :home # , locals: { page_title: "Page Title" }
 end
 
 get '/chapters/:number' do |n|
@@ -54,12 +54,12 @@ def search_for(term)
     to_search =
       [@contents[chp - 1]] + File.read("data/chp#{chp}.txt").split(/\n{2,}/)
     to_search.each_with_index do |par, par_num|
-      if /#{term}/i =~ par
-        line = text_line(term, par)
+      next unless /#{term}/i =~ par
 
-        # results[chp] << [par_num, highlight(regex_term, line)]
-        results[chp] << [par_num, line]
-      end
+      line = text_line(term, par)
+
+      # results[chp] << [par_num, highlight(regex_term, line)]
+      results[chp] << [par_num, line]
     end
   end
 end
