@@ -9,4 +9,4 @@ Simple browser-based reader application.
 ## Installation
 
 - run `bundle install`
-- start server with `puma`??
+- start server with `bundle exec puma`
